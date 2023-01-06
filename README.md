@@ -2,7 +2,7 @@
 
 ## Architektura projektu
 
-![image info](ARCHITECTURE_pd.jpg)
+![image info](ARCHITECTURE_pd.png)
 
 ## Diagram ERD
 
