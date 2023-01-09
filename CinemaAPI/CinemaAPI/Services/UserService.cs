@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CinemaAPI.Services
 {
-    public class AccountService : IAccountService
+    public class UserService : IUserService
     {
         public void LoginUser(LoginUserDto dto)
         {

@@ -8,7 +8,7 @@ namespace CinemaAPI.Entities
 {
     public class CinemaDbContext : DbContext
     {
-        private readonly String _connectionString = "Server=(localdb)\\mssqllocaldb;Database=CinemaDb;Trusted_Connection=True";
+        private readonly String _connectionString = "Server=DESKTOP-DB4K6V2;Database=CinemaDb;Trusted_Connection=True";
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<RegistrationToken> RegistrationTokens { get; set; }
@@ -19,7 +19,7 @@ namespace CinemaAPI.Entities
         public DbSet<Movie> Movies { get; set; }
         public DbSet<MovieDetails> MovieDetails { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderReservation> orderReservations { get; set; }
+        public DbSet<OrderReservation> OrderReservations { get; set; }
         public DbSet<OrderStatus> OrderStatuses { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Screening> Screenings { get; set; }
@@ -30,6 +30,12 @@ namespace CinemaAPI.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
             modelBuilder.Entity<MovieDetails>()
                 .HasKey(e => e.MovieId);
 

@@ -426,7 +426,7 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Entities.Address", "Address")
                         .WithOne("Cinema")
                         .HasForeignKey("CinemaAPI.Entities.Cinema", "AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Address");
@@ -437,7 +437,7 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Entities.Cinema", "Cinema")
                         .WithMany("Halls")
                         .HasForeignKey("CinemaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cinema");
@@ -448,13 +448,13 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Entities.Hall", "Hall")
                         .WithMany("HallSeats")
                         .HasForeignKey("HallId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CinemaAPI.Entities.SeatType", "SeatType")
                         .WithMany("HallSeats")
                         .HasForeignKey("SeatTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Hall");
@@ -467,7 +467,7 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Entities.Movie", "Movie")
                         .WithOne("MovieDetails")
                         .HasForeignKey("CinemaAPI.Entities.MovieDetails", "MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Movie");
@@ -478,13 +478,13 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Entities.OrderStatus", "OrderStatus")
                         .WithMany("Orders")
                         .HasForeignKey("OrderStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CinemaAPI.Entities.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("OrderStatus");
@@ -497,13 +497,13 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Entities.Order", "Order")
                         .WithMany("OrderReservations")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CinemaAPI.Entities.Reservation", "Reservation")
                         .WithMany("OrderReservations")
                         .HasForeignKey("ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Order");
@@ -516,7 +516,7 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Entities.User", "User")
                         .WithOne("RegistrationToken")
                         .HasForeignKey("CinemaAPI.Entities.RegistrationToken", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -527,19 +527,19 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Entities.HallSeat", "HallSeat")
                         .WithOne("Reservation")
                         .HasForeignKey("CinemaAPI.Entities.Reservation", "HallSeatId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CinemaAPI.Entities.Screening", "Screening")
                         .WithMany("Reservations")
                         .HasForeignKey("ScreeningId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CinemaAPI.Entities.User", "User")
                         .WithMany("Reservations")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("HallSeat");
@@ -554,13 +554,13 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Entities.Hall", "Hall")
                         .WithMany("Screenings")
                         .HasForeignKey("HallId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CinemaAPI.Entities.Movie", "Movie")
                         .WithMany("Screenings")
                         .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Hall");
@@ -573,7 +573,7 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Entities.SeatType", "SeatType")
                         .WithOne("SeatPrice")
                         .HasForeignKey("CinemaAPI.Entities.SeatPrice", "SeatTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("SeatType");
@@ -584,7 +584,7 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Entities.Reservation", "Reservation")
                         .WithOne("Ticket")
                         .HasForeignKey("CinemaAPI.Entities.Ticket", "ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Reservation");
@@ -595,7 +595,7 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Entities.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Role");
