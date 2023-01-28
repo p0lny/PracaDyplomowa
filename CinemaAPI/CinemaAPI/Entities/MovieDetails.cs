@@ -13,6 +13,7 @@ namespace CinemaAPI.Entities
         public String Description { get; set; }
         public TimeSpan Duration { get; set; }
         public byte AgeRestriction { get; set; }
+        public string Genre { get; set; }
 
 
         public virtual Movie Movie { get; set; }

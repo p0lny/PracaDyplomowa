@@ -5,7 +5,7 @@ namespace CinemaAPI.Services
     public interface IUserService
     {
         void RegisterUser(RegisterUserDto dto);
-        void LoginUser(LoginUserDto dto);
+        string LoginUser(LoginUserDto dto);
         void ResetUserPassword(ResetUserPasswordDto dto, string token);
         void ChangeUserPassword(ChangeUserPasswordDto dto);
         void ActivateUser(string token);

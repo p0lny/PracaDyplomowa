@@ -111,7 +111,8 @@ namespace CinemaAPI.Migrations
                     MovieId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Duration = table.Column<TimeSpan>(type: "time", nullable: false),
-                    AgeRestriction = table.Column<byte>(type: "tinyint", nullable: false)
+                    AgeRestriction = table.Column<byte>(type: "tinyint", nullable: false),
+                    Genre = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -328,7 +329,7 @@ namespace CinemaAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "orderReservations",
+                name: "OrderReservations",
                 columns: table => new
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false),
@@ -336,15 +337,15 @@ namespace CinemaAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_orderReservations", x => new { x.OrderId, x.ReservationId });
+                    table.PrimaryKey("PK_OrderReservations", x => new { x.OrderId, x.ReservationId });
                     table.ForeignKey(
-                        name: "FK_orderReservations_Orders_OrderId",
+                        name: "FK_OrderReservations_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_orderReservations_Reservations_ReservationId",
+                        name: "FK_OrderReservations_Reservations_ReservationId",
                         column: x => x.ReservationId,
                         principalTable: "Reservations",
                         principalColumn: "Id",
@@ -394,8 +395,8 @@ namespace CinemaAPI.Migrations
                 column: "SeatTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_orderReservations_ReservationId",
-                table: "orderReservations",
+                name: "IX_OrderReservations_ReservationId",
+                table: "OrderReservations",
                 column: "ReservationId");
 
             migrationBuilder.CreateIndex(
@@ -464,7 +465,7 @@ namespace CinemaAPI.Migrations
                 name: "MovieDetails");
 
             migrationBuilder.DropTable(
-                name: "orderReservations");
+                name: "OrderReservations");
 
             migrationBuilder.DropTable(
                 name: "RegistrationTokens");

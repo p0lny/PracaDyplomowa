@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CinemaAPI.Migrations
 {
-    [DbContext(typeof(CinemaDbContext))]
-    partial class CinemaDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApiDbContext))]
+    partial class ApiDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -159,6 +159,9 @@ namespace CinemaAPI.Migrations
                     b.Property<TimeSpan>("Duration")
                         .HasColumnType("time");
 
+                    b.Property<string>("Genre")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("MovieId");
 
                     b.ToTable("MovieDetails");
@@ -204,7 +207,7 @@ namespace CinemaAPI.Migrations
 
                     b.HasIndex("ReservationId");
 
-                    b.ToTable("orderReservations");
+                    b.ToTable("OrderReservations");
                 });
 
             modelBuilder.Entity("CinemaAPI.Entities.OrderStatus", b =>

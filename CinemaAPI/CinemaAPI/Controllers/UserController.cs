@@ -22,8 +22,8 @@ namespace CinemaAPI.Controllers
         [HttpPost("login")]
         public ActionResult Login([FromBody] LoginUserDto dto)
         {
-            _userService.LoginUser(dto);
-            return Ok();
+            var token = _userService.LoginUser(dto);
+            return Ok(token);
         }
 
         [HttpPost("register")]

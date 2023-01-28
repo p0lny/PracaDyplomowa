@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace CinemaAPI.Entities
 {
-    public class CinemaDbContext : DbContext
+    public class ApiDbContext : DbContext
     {
-        private readonly String _connectionString = "Server=DESKTOP-DB4K6V2;Database=CinemaDb;Trusted_Connection=True";
+
+        public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
+        {
+
+        }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<RegistrationToken> RegistrationTokens { get; set; }
@@ -43,9 +48,18 @@ namespace CinemaAPI.Entities
                 .HasKey(e => new { e.OrderId, e.ReservationId });
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public static SqlConnectionStringBuilder GetSqlConnectionString()
         {
-            optionsBuilder.UseSqlServer(_connectionString);
+            var connectionString = new SqlConnectionStringBuilder()
+            {
+                DataSource = "34.118.89.139",
+                UserID = "api",
+                Password = "aaabbbccc",
+                InitialCatalog = "CinemaApiDb",
+                Encrypt = false,
+            };
+            connectionString.Pooling = true;
+            return connectionString;
         }
     }
 }
