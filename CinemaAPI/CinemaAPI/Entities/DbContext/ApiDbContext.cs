@@ -52,9 +52,9 @@ namespace CinemaAPI.Entities
         {
             var connectionString = new SqlConnectionStringBuilder()
             {
-                DataSource = "34.118.89.139",
-                UserID = "api",
-                Password = "aaabbbccc",
+                DataSource = "ELPLC-0408\\SQLEXPRESS2014",
+                UserID = "sa",
+                Password = "5540",
                 InitialCatalog = "CinemaApiDb",
                 Encrypt = false,
             };

@@ -74,6 +74,7 @@ namespace CinemaAPI
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IJwtTokenProviderService, JwtTokenProviderService>();
             services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<IScreeningService, ScreeningService>();
 
             //validators
             services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();

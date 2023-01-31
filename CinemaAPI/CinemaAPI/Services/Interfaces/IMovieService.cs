@@ -1,9 +1,13 @@
-﻿namespace CinemaAPI.Services
+﻿using CinemaAPI.Entities;
+using CinemaAPI.Models;
+using System.Collections.Generic;
+
+namespace CinemaAPI.Services
 {
     public interface IMovieService
     {
-        void GetAllMovies();
-        void GetMovie(int id);
-        void GetMovieDetails(int id);
+        IEnumerable<Movie> GetAllMovies();
+        MovieInfoDto GetMovie(int id);
+        MovieDetails GetMovieDetails(int id);
     }
 }

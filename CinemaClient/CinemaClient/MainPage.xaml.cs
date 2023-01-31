@@ -2,23 +2,33 @@
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    public MainPage()
+    {
+        InitializeComponent();
+        BindingContext = new AllScreenings();
+    }
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
+    protected override void OnAppearing()
+    {
+        ((AllScreenings)BindingContext).LoadScreenings();
+    }
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+    async void OnScreeningClicked(object sender, EventArgs args)
+    {
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+        var button = sender as Button;
+        var bindingContext = (ScreeningInfo) button.BindingContext;
+
+        if (bindingContext != null)
+        {
+            var id = bindingContext.Id;
+            Application.Current.MainPage.Navigation.PushModalAsync(new MovieInfoPage(id), true);
+        }
+
+    }
+
+      
+
 }
 

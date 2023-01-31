@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CinemaAPI.Entities;
+using CinemaAPI.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,17 +10,41 @@ namespace CinemaAPI.Services
 {
     public class MovieService : IMovieService
     {
-        public void GetAllMovies()
+        ApiDbContext _apiDbContext;
+        public MovieService(ApiDbContext apiDbContext)
         {
-            throw new NotImplementedException();
+            _apiDbContext = apiDbContext;
         }
 
-        public void GetMovie(int id)
+        public IEnumerable<Movie> GetAllMovies()
         {
-            throw new NotImplementedException();
+            var movies = _apiDbContext.Movies.ToList();
+            return movies;
         }
 
-        public void GetMovieDetails(int id)
+        public MovieInfoDto GetMovie(int id)
+        {
+            var movie = _apiDbContext.Movies.Where(e => e.Id == id).Include(e=>e.MovieDetails).FirstOrDefault();
+
+            if(movie != null)
+            {
+                MovieInfoDto dto = new()
+                {
+                    Id = movie.Id,
+                    Title = movie.Title,
+                    Description = movie.MovieDetails.Description,
+                    UrlPoster = movie.UrlPoster,
+                    UrlTrailer = movie.UrlTrailer
+                };
+                return dto;
+
+            }
+
+            return null;
+
+        }
+
+        public MovieDetails GetMovieDetails(int id)
         {
             throw new NotImplementedException();
         }

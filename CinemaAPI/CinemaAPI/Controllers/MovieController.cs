@@ -1,4 +1,5 @@
 ﻿using CinemaAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace CinemaAPI.Controllers
 {
-    [Route("api/movie")]
+    [Route("api/movies")]
     [ApiController]
+    [AllowAnonymous]
     public class MovieController : ControllerBase
     {
 
@@ -19,21 +21,21 @@ namespace CinemaAPI.Controllers
             _movieService = movieService;
         }
 
-        [HttpGet("/movies")]
+        [HttpGet]
         public ActionResult GetAllMovies()
         {
-            _movieService.GetAllMovies();
-            return Ok();
+            var movies = _movieService.GetAllMovies();
+            return Ok(movies);
         }
 
-        [HttpGet("/movie/{id}")]
+        [HttpGet("{id}")]
         public ActionResult GetMovie([FromRoute] int id)
         {
-            _movieService.GetMovie(id);
-            return Ok();
+            var movie = _movieService.GetMovie(id);
+            return Ok(movie);
         }
 
-        [HttpGet("/movie/details/{id}")]
+        [HttpGet("details/{id}")]
         public ActionResult GetMovieDetails([FromRoute] int id)
         {
             _movieService.GetMovieDetails(id);
